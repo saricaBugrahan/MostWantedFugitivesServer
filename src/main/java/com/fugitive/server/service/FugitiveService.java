@@ -48,5 +48,15 @@ public class FugitiveService {
         }
         log.error("Fugitive with id: {} not exist in the database", id);
     }
+    public int countFugitives(){
+        return (int) fugitiveRepo.count();
+    }
+
+    public String getImageByFugitiveId(Integer id){
+        if (fugitiveRepo.findById(id).isPresent()){
+            return fugitiveRepo.findById(id).get().getB64Image();
+        }
+        return null;
+    }
 
 }

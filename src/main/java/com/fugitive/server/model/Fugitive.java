@@ -23,6 +23,8 @@ public class Fugitive {
     private String birthDate;
     private String organization;
     private String color;
+
+    @Lob //indication large object
     private String b64Image;
     private LocalDateTime createdDate;
 }

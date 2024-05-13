@@ -50,5 +50,14 @@ public class FugitiveController {
         return ResponseEntity.ok().body(fugitives);
     }
 
+    @GetMapping("/count")
+    public ResponseEntity<Integer> countFugitives(){
+        return ResponseEntity.ok().body(fugitiveService.countFugitives());
+    }
+    @GetMapping("/image/{id}")
+    public ResponseEntity<String> getImageByFugitiveId(@PathVariable Integer id){
+        return ResponseEntity.ok().body(fugitiveService.getImageByFugitiveId(id));
+    }
+
 
 }
