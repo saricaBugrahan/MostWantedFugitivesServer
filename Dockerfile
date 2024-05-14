@@ -4,8 +4,8 @@ COPY src /usr/app/src
 COPY pom.xml /usr/app
 
 WORKDIR /usr/app
-
 RUN mvn clean package  -DskipTests
+
 
 
 # Running the jar file

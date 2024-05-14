@@ -6,6 +6,7 @@ import com.fugitive.server.model.Fugitive;
 import com.fugitive.server.repository.FugitiveRepo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
