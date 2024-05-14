@@ -21,7 +21,6 @@ public class FugitiveService {
         return fugitiveRepo.findAll();
     }
 
-    @Transactional
     public List<Fugitive> findFugitivesByColor(String color){
         return fugitiveRepo.findFugitivesByColor(color);
     }
