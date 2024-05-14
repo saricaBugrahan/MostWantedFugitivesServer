@@ -32,11 +32,7 @@ public class FugitiveController {
 
     @GetMapping("/all/{color}")
     public ResponseEntity<List<Fugitive>> findAllByColor(@PathVariable String color){
-        return ResponseEntity.ok().body(
-                Objects.requireNonNull(getAllFugitives().getBody()).stream()
-                        .filter(fugitive -> fugitive.getColor().equals(color))
-                        .toList()
-        );
+        return ResponseEntity.ok().body(fugitiveService.findAllByColor(color));
     }
 
     @GetMapping("/{id}")
@@ -63,6 +59,4 @@ public class FugitiveController {
     public ResponseEntity<String> getImageByFugitiveId(@PathVariable Integer id){
         return ResponseEntity.ok().body(fugitiveService.getImageByFugitiveId(id));
     }
-
-
 }

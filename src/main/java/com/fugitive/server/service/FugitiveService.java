@@ -21,7 +21,7 @@ public class FugitiveService {
     }
 
     public List<Fugitive> findAllByColor(String color){
-        return fugitiveRepo.findAllByColor(color);
+        return fugitiveRepo.findFugitivesByColor(color);
     }
 
     public Fugitive saveFugitive(Fugitive fugitive){
