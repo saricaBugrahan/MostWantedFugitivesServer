@@ -9,6 +9,5 @@ import java.util.List;
 
 public interface FugitiveRepo extends JpaRepository<Fugitive, Integer> {
 
-    @Query("SELECT f FROM Fugitive f WHERE f.color = :color")
-    List<Fugitive> getFugitivesByColor(@Param("color") String color);
+   List<Fugitive> findAllByColor(String color);
 }
