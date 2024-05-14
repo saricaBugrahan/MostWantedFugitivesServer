@@ -10,6 +10,5 @@ import java.util.List;
 
 public interface FugitiveRepo extends JpaRepository<Fugitive, Integer> {
 
-   @Transactional
    List<Fugitive> findFugitivesByColor(String color);
 }

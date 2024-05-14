@@ -27,5 +27,6 @@ public class Fugitive {
     //TODO: Change as BLOB in the database
     @Lob //indication large object
     private String b64Image;
+
     private LocalDateTime createdDate;
 }
