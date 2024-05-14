@@ -30,8 +30,8 @@ public class FugitiveController {
     }
 
     @GetMapping("/all/{color}")
-    public ResponseEntity<List<Fugitive>> getAllFugitivesByColor(@PathVariable String color){
-        return ResponseEntity.ok().body(fugitiveService.getAllFugitivesByColor(color));
+    public ResponseEntity<List<Fugitive>> getFugitivesByColor(@PathVariable String color){
+        return ResponseEntity.ok().body(fugitiveService.getFugitivesByColor(color));
     }
 
     @GetMapping("/{id}")

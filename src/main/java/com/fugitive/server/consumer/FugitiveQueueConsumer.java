@@ -11,13 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.beans.Transient;
+import java.time.LocalDateTime;
 
 @Component
 @Slf4j
 public class FugitiveQueueConsumer {
 
     FugitiveRepo fugitiveRepo;
-
+    private ObjectMapper objectMapper = new ObjectMapper();
     @Autowired
     public FugitiveQueueConsumer(FugitiveRepo fugitiveRepo) {
         this.fugitiveRepo = fugitiveRepo;
@@ -36,7 +37,9 @@ public class FugitiveQueueConsumer {
 
     public Fugitive transformMessageIntoFugitive(String message){
         try {
-            return new ObjectMapper().readValue(message, Fugitive.class);
+            Fugitive fugitive  = objectMapper.readValue(message, Fugitive.class);
+            fugitive.setCreatedDate(LocalDateTime.now());
+            return fugitive;
         } catch (JsonProcessingException e) {
             log.error("Error while transforming message into Fugitive object: {}", e.getMessage());
             return null;
