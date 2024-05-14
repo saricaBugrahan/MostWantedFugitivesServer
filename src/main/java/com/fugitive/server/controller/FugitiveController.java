@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("api/v1/fugitives")
@@ -31,7 +32,11 @@ public class FugitiveController {
 
     @GetMapping("/all/{color}")
     public ResponseEntity<List<Fugitive>> findAllByColor(@PathVariable String color){
-        return ResponseEntity.ok().body(fugitiveService.findAllByColor(color));
+        return ResponseEntity.ok().body(
+                Objects.requireNonNull(getAllFugitives().getBody()).stream()
+                        .filter(fugitive -> fugitive.getColor().equals(color))
+                        .toList()
+        );
     }
 
     @GetMapping("/{id}")
