@@ -2,6 +2,7 @@ package com.fugitive.server.service;
 
 import com.fugitive.server.model.Fugitive;
 import com.fugitive.server.repository.FugitiveRepo;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,8 @@ public class FugitiveService {
         return fugitiveRepo.findAll();
     }
 
-    public List<Fugitive> findAllByColor(String color){
+    @Transactional
+    public List<Fugitive> findFugitivesByColor(String color){
         return fugitiveRepo.findFugitivesByColor(color);
     }
 
