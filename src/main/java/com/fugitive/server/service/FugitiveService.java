@@ -18,7 +18,7 @@ public class FugitiveService {
     private final FugitiveRepo fugitiveRepo;
 
     public List<Fugitive> getAllFugitives(){
-        return fugitiveRepo.findAll();
+        return (List<Fugitive>) fugitiveRepo.findAll();
     }
 
     public List<Fugitive> findFugitivesByColor(String color){
