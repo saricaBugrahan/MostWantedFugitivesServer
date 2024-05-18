@@ -13,6 +13,8 @@ services:
       - 'POSTGRES_HOST_AUTH_METHOD=trust'
     volumes:
       - "./postgres_data:/var/lib/postgresql/data"
+
+    restart: on-failure
   rabbitmq:
     image: "rabbitmq:3-management"
     hostname: "rabbitmq"

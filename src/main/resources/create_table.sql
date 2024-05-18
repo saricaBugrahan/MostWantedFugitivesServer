@@ -10,3 +10,11 @@ CREATE TABLE IF NOT EXISTS 'fugitives'
     'b64Image' TEXT NOT NULL,
     'createdDate' TIMESTAMP NOT NULL
 );
+
+CREATE TABLE IF NOT EXIST '_user'
+(
+    'id' INT AUTO_INCREMENT PRIMARY KEY,
+    'username' VARCHAR(255) NOT NULL,
+    'password' VARCHAR(255) NOT NULL,
+    'role' VARCHAR(255) NOT NULL
+);
