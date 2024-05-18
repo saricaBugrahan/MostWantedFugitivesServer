@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,7 +14,8 @@ import java.time.LocalDateTime;
 public class Fugitive {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
     private String name;
     private String surname;
@@ -24,8 +24,7 @@ public class Fugitive {
     private String organization;
     private String color;
 
-    //TODO: Change as BLOB in the database
-    @Lob //indication large object
+    @Lob
     private String b64Image;
 
     private LocalDateTime createdDate;
