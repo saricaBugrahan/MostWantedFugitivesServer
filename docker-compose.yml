@@ -13,8 +13,12 @@ services:
       - 'POSTGRES_HOST_AUTH_METHOD=trust'
     volumes:
       - "./postgres_data:/var/lib/postgresql/data"
-
-    restart: on-failure
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
   rabbitmq:
     image: "rabbitmq:3-management"
     hostname: "rabbitmq"
@@ -25,7 +29,7 @@ services:
     build: .
     ports:
       - "8080:8080"
-    restart: on-failure
+    restart: unless-stopped
     extra_hosts:
       - "host.docker.internal:host-gateway"
     depends_on:
