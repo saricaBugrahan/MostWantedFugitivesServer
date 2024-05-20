@@ -8,8 +8,8 @@ services:
       - "5432:5432"
     environment:
       - 'POSTGRES_USER=postgres'
-      - 'POSTGRES_PASSWORD=postgres'
-      - 'POSTGRES_DB=java'
+      - 'POSTGRES_PASSWORD=postgrestest'
+      - 'POSTGRES_DB=postgres'
       - 'POSTGRES_HOST_AUTH_METHOD=trust'
     volumes:
       - "./postgres_data:/var/lib/postgresql/data"
