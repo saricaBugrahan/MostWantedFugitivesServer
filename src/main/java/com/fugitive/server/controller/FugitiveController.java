@@ -7,7 +7,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("api/v1/fugitives")
@@ -26,7 +28,7 @@ public class FugitiveController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Fugitive>> getAllFugitives(){
+    public ResponseEntity<Iterable<Fugitive>> getAllFugitives(){
         return ResponseEntity.ok().body(fugitiveService.getAllFugitives());
     }
 
@@ -36,23 +38,13 @@ public class FugitiveController {
     }
 
     @GetMapping("/{id}")
-    public  ResponseEntity<Fugitive> getFugitiveById(@PathVariable Integer id){
+    public  ResponseEntity<Optional<Fugitive>> getFugitiveById(@PathVariable Integer id){
         return ResponseEntity.ok().body(fugitiveService.getFugitiveById(id));
     }
 
-    @PostMapping("/add")
-    public ResponseEntity<Fugitive> saveFugitive(@RequestBody Fugitive fugitive){
-        return ResponseEntity.ok().body(fugitiveService.saveFugitive(fugitive));
-    }
-
-    @PostMapping("addAll")
-    public  ResponseEntity<List<Fugitive>> saveFugitives(@RequestBody List<Fugitive> fugitives){
-        fugitiveService.saveFugitives(fugitives);
-        return ResponseEntity.ok().body(fugitives);
-    }
 
     @GetMapping("/count")
-    public ResponseEntity<Integer> countFugitives(){
+    public ResponseEntity<Long> countFugitives(){
         return ResponseEntity.ok().body(fugitiveService.countFugitives());
     }
     @GetMapping("/image/{id}")

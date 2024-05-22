@@ -8,7 +8,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -17,30 +19,16 @@ public class FugitiveService {
 
     private final FugitiveRepo fugitiveRepo;
 
-    public List<Fugitive> getAllFugitives(){
-        return (List<Fugitive>) fugitiveRepo.findAll();
+    public Iterable<Fugitive> getAllFugitives(){
+        return fugitiveRepo.findAll();
     }
 
     public List<Fugitive> findFugitivesByColor(String color){
         return fugitiveRepo.findFugitivesByColor(color);
     }
 
-    public Fugitive saveFugitive(Fugitive fugitive){
-        fugitive.setCreatedDate(LocalDateTime.now());
-        fugitiveRepo.save(fugitive);
-        return fugitive;
-    }
-    public void saveFugitives(List<Fugitive> fugitives){
-        fugitives.forEach(fugitive -> fugitive.setCreatedDate(LocalDateTime.now()));
-        fugitiveRepo.saveAll(fugitives);
-    }
-
-    public Fugitive getFugitiveById(Integer id){
-        if (fugitiveRepo.findById(id).isPresent()){
-            return fugitiveRepo.findById(id).get();
-        }
-        log.error("Fugitive with id: {} not found", id);
-        return null;
+    public Optional<Fugitive> getFugitiveById(Integer id){
+        return fugitiveRepo.findById(id);
     }
 
     public void deleteFugitiveById(Integer id){
@@ -49,8 +37,8 @@ public class FugitiveService {
         }
         log.error("Fugitive with id: {} not exist in the database", id);
     }
-    public int countFugitives(){
-        return (int) fugitiveRepo.count();
+    public Long countFugitives(){
+        return  fugitiveRepo.count();
     }
 
     public String getImageByFugitiveId(Integer id){
